@@ -27,7 +27,7 @@
       </property>
       
       <!-- List of XML mapping files -->
-      
+      <mapping resource="role"></mapping>
       
    </session-factory>
 </hibernate-configuration>

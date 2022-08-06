@@ -27,7 +27,6 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>6.1.2.Final</version>
-			<type>pom</type>
 		</dependency>
 
 		<!-- Pg Driver-->
