@@ -30,5 +30,12 @@
 			<type>pom</type>
 		</dependency>
 
+		<!-- Pg Driver-->
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.4.1</version>
+		</dependency>
 	</dependencies>
 </project>
