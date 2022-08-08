@@ -91,6 +91,28 @@ public class App {
 		session.close();
 	}
 
+	
+	void deleteRole() {
+		
+		Scanner scr = new Scanner(System.in);
+		System.out.println("Enter role Id");
+		int roleId = scr.nextInt();
+		
+		Session session = factory.openSession();
+		
+		Transaction tx = session.beginTransaction();
+		
+		try {
+			RoleBean roleBean = session.get(RoleBean.class, roleId);
+			session.delete(roleBean);
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+		
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 
@@ -116,6 +138,9 @@ public class App {
 				break;
 			case 3:
 				app.getRoleById();
+				break;
+			case 4:
+				app.deleteRole();
 				break;
 				
 			}// switch
