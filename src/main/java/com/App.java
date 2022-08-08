@@ -104,8 +104,12 @@ public class App {
 		
 		try {
 			RoleBean roleBean = session.get(RoleBean.class, roleId);
-			session.delete(roleBean);
-			tx.commit();
+			if(roleBean==null) {
+				System.out.println("Invalid roleId");
+			}else {
+				session.delete(roleBean);
+				tx.commit();				
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			tx.rollback();
@@ -120,8 +124,8 @@ public class App {
 		App app = new App();
 
 		while (true) {
-			System.out.println("\n0 for exit\n1 for add\n2 for list all roles\n3 for view\n4 for delete role");
-			System.out.println("Enter choice....");
+			System.out.println("\n0 exit\n1 add\n2 list all roles\n3 view\n4 delete role");
+			System.out.println("-----Enter choice-----");
 
 			Scanner scr = new Scanner(System.in);
 
