@@ -1,6 +1,10 @@
 package com;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
+
+import org.hibernate.Query;
 
 import org.hibernate.Transaction;
 
@@ -54,7 +58,19 @@ public class App {
 			tx.rollback();// undo
 		}
 		session.close();
+	}
+	
+	void getAllRole() {
+		Session session = factory.openSession();
+		Query query = session.createQuery("from RoleBean");
 		
+		List<RoleBean> listRole = query.getResultList();
+		
+		System.out.println("RoleId \t RoleName");
+		for (RoleBean roleBean : listRole) {
+			System.out.println(roleBean.getRoleId()+"\t "+roleBean.getRoleName());
+		}
+		session.close();
 	}
 	
 	public static void main(String[] args) {
@@ -76,6 +92,9 @@ public class App {
 				System.exit(0);
 			case 1:
 				app.addRole();
+				break;
+			case 2:
+				app.getAllRole();;
 				break;
 			}// switch
 		} // while
