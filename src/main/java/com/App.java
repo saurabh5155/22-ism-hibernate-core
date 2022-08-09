@@ -12,6 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import com.bean.RoleBean;
+import com.bean.UserBean;
 
 /**
  * Hello world!
@@ -116,6 +117,34 @@ public class App {
 		
 	}
 	
+	void update() {
+		Scanner snr = new Scanner(System.in);
+		Session session = factory.openSession();
+		
+		Transaction tx = session.beginTransaction();
+		
+		System.out.println("Enter role Id");
+		int roleId = snr.nextInt();
+
+		RoleBean roleBean = session.get(RoleBean.class, roleId);
+		
+		if(roleBean == null) {
+			
+			System.out.println("Invalid roleId");
+			tx.rollback();
+		}else {			
+			System.out.println("Old Role Name"+roleBean.getRoleName());
+			
+			System.out.println("Enter New RoleName");
+			roleBean.setRoleName(snr.next());
+			session.update(roleBean);
+			tx.commit();
+		}
+		
+		session.close();
+		
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 
@@ -123,7 +152,7 @@ public class App {
 		App app = new App();
 
 		while (true) {
-			System.out.println("\n0 exit\n1 add\n2 list all roles\n3 view\n4 delete role");
+			System.out.println("\n0 exit\n1 add\n2 list all roles\n3 view\n4 delete role\n5 update role");
 			System.out.println("-----Enter choice-----");
 
 			Scanner scr = new Scanner(System.in);
@@ -144,6 +173,9 @@ public class App {
 				break;
 			case 4:
 				app.deleteRole();
+				break;
+			case 5:
+				app.update();;
 				break;
 				
 			}// switch
