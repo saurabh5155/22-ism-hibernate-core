@@ -9,13 +9,24 @@
 		<id name="userId" type="int">
 			<generator class="native"></generator>
 		</id>
-		
+
 		<property name="firstName"></property>
 		<property name="lastName"></property>
 		<property name="email"></property>
 		<property name="password"></property>
-		
-		<many-to-one name="role" column="roleId" class="com.bean.RoleBean" not-null="true"></many-to-one>
+
+		<!-- many-to-one Relationship between UserBean and RoleBean -->
+		<many-to-one name="role" column="roleId"
+			class="com.bean.RoleBean" not-null="true"></many-to-one>
+
+		<!-- List for Vehicle -->
+
+		<list name="vehicle" cascade="all">
+			<key column="userId"></key>
+			<index column="vehicleOrder"></index>
+			<!-- One to many Relationship between vehicle and users -->
+			<one-to-many class="com.bean.VehicleBean" />
+		</list>
 	</class>
 </hibernate-mapping>
 
