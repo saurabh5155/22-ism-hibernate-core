@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bean.VehicleBean" table="vehicle">
+		<id name="vehicleId">
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="vehicleNumber"></property>
+
+		<!-- If We Want many to one Relationship -->
+		<!-- <many-to-one name="user" column="userId" class="com.bean.UserBean" 
+			not-null="true"></many-to-one> -->
+	</class>
+</hibernate-mapping>
